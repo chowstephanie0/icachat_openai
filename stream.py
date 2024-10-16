@@ -82,18 +82,6 @@ elif page == 'Immigration Statistics':
         y=cols
     )
 
-    st.write("Number And Profile Of Permanent Residents Granted")
-    dfPR = pd.read_csv("PRGranted.csv")
-    transposed_dfPR = dfPR.set_index('Data Series').transpose()
-    st.write(transposed_dfPR)
-    '## Data Series'
-    colsPR = st.multiselect('select columns:', transposed_dfPR.columns, default=[])
-
-    st.line_chart(
-        transposed_dfPR,
-        y=colsPR
-    )
-
 elif page == 'Methodology':
     st.subheader("Methodology")
     st.image("icachat_diagram.jpg", caption="Methodology Diagram")
