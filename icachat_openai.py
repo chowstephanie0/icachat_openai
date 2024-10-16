@@ -19,7 +19,7 @@ import getpass
 import os
 
 
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"]
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
