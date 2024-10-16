@@ -21,7 +21,7 @@ import os
 import hmac
 
 load_dotenv()
-openai_api_key=st.secrets["OPENAI_API_KEY"]
+openai_api_key=os.getenv("OPENAI_API_KEY")
 os.environ["OPENAI_API_KEY"] = openai_api_key
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
