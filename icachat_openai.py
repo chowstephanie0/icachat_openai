@@ -19,7 +19,7 @@ import getpass
 import os
 
 
-os.environ["OPENAI_API_KEY"] = "sk-fVvuAQEivcyDPWug7gqo2IbofSFH0DCGE_BSlPoIWsT3BlbkFJBJH8Dho8ymKvzT9wfUUQpNSHgEbiSb9ZwRwycmJp0A"
+os.environ["OPENAI_API_KEY"] = "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"
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
