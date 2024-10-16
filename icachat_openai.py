@@ -10,6 +10,7 @@ from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQAWithSourcesChain
 from torch import cuda, bfloat16
+from dotenv import load_dotenv
 import transformers
 import torch
 import streamlit as st
@@ -18,8 +19,9 @@ from streamlit_chat import message
 import getpass
 import os
 
-
-os.environ["OPENAI_API_KEY"] = "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"
+load_dotenv()
+openai_api_key=os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = openai_api_key
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
