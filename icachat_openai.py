@@ -52,8 +52,7 @@ def conversational_chat(query):
         You are a very proficient Singapore Immigration Officer that speaks and writes immigration documents proficiently.
         """)
     print('Sending completion call to OpenAI...')
-    chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=db.as_retriever(search_type="similarity", search_kwargs={'k':3}), return_source_documents=True, condense_questio
-n_prompt=QUESTION_PROMPT, verbose=True)
+    chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=db.as_retriever(search_type="similarity", search_kwargs={'k':3}), return_source_documents=True, condense_question_prompt=QUESTION_PROMPT, verbose=True)
    
     chat_history = []
 
