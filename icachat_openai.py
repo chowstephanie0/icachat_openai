@@ -18,9 +18,9 @@ from streamlit_chat import message
 import getpass
 import os
 
-os.getenv("OPENAI_API_KEY")
 
-print(os.getenv("OPENAI_API_KEY"))
+
+os.environ["OPENAI_API_KEY"]
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
@@ -28,7 +28,7 @@ urls =["https://www.ica.gov.sg/reside/citizenship/apply", "https://www.ica.gov.s
 loader = AsyncHtmlLoader(urls)
 docs = loader.load()
 
-print(docs)
+#print(docs)
 
 html2text = Html2TextTransformer()
 docs_transformed = html2text.transform_documents(docs)
@@ -37,7 +37,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 texts = text_splitter.split_documents(docs_transformed)
 
 
-llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613")
+llm = ChatOpenAI(temperature=0, model="gpt-4o-mini")
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
@@ -53,7 +53,8 @@ def conversational_chat(query):
         You are a very proficient Singapore Immigration Officer that speaks and writes immigration documents proficiently.
         """)
     print('Sending completion call to OpenAI...')
-    chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=db.as_retriever(search_type="similarity", search_kwargs={'k':3}), return_source_documents=True, condense_question_prompt=QUESTION_PROMPT, verbose=True)
+    chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=db.as_retriever(search_type="similarity", search_kwargs={'k':3}), return_source_documents=True, condense_questio
+n_prompt=QUESTION_PROMPT, verbose=True)
    
     chat_history = []
 
