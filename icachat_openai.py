@@ -18,6 +18,7 @@ import time
 from streamlit_chat import message
 import getpass
 import os
+import hmac
 
 load_dotenv()
 openai_api_key=os.getenv("OPENAI_API_KEY")
