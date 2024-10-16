@@ -59,10 +59,18 @@ if page == 'ICA Immigration Eligibility':
      st.session_state.messages.append({"role": "assistant", "content": response})
 
 elif page == 'About Us':
-    st.subheader("Welcome to About Us")
+    st.subheader("**About Us: Your Trusted Guide to Singaporean Residency**")
+    st.subheader("Project Scope:")
+    st.write("Providing a platform for navigating the journey to living, studying, and working in Singapore and assisting foreigners who aspire to make Singapore their new home, whether temporarily or permanently")
+    st.subheader("Data Source:")
+    st.write("https://www.ica.gov.sg/")
+    st.subheader("Use cases:")
+    st.write("1. Assisting Foreigners in Determining Eligibility for Staying in Singapore")
+    st.write("* Providing the Latest Data and Trend on Singaporean Citizenship and Permanent Residency")
 
 elif page == 'Immigration Statistics':
     st.subheader("Immigration Statistics")
+    st.write("Number And Profile Of Singapore Citizens Granted")
     df = pd.read_csv("SCGranted.csv")
     transposed_df = df.set_index('Data Series').transpose()
     st.write(transposed_df)
@@ -74,5 +82,18 @@ elif page == 'Immigration Statistics':
         y=cols
     )
 
+    st.write("Number And Profile Of Permanent Residents Granted")
+    dfPR = pd.read_csv("PRGranted.csv")
+    transposed_dfPR = dfPR.set_index('Data Series').transpose()
+    st.write(transposed_dfPR)
+    '## Data Series'
+    colsPR = st.multiselect('select columns:', transposed_dfPR.columns, default=[])
+
+    st.line_chart(
+        transposed_dfPR,
+        y=colsPR
+    )
+
 elif page == 'Methodology':
     st.subheader("Methodology")
+    st.image("icachat_diagram.jpg", caption="Methodology Diagram")
