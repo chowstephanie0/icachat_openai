@@ -18,9 +18,10 @@ import time
 from streamlit_chat import message
 import getpass
 import os
+import hmac
 
 load_dotenv()
-openai_api_key=os.getenv("OPENAI_API_KEY")
+openai_api_key=st.secrets["OPENAI_API_KEY"]
 os.environ["OPENAI_API_KEY"] = openai_api_key
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
