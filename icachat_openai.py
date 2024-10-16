@@ -18,6 +18,7 @@ from streamlit_chat import message
 import getpass
 import os
 
+
 os.environ["OPENAI_API_KEY"] = "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"
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
