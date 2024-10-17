@@ -66,7 +66,7 @@ elif page == 'About Us':
     st.write("https://www.ica.gov.sg/")
     st.subheader("Use cases:")
     st.write("1. Assisting Foreigners in Determining Eligibility for Staying in Singapore")
-    st.write("* Providing the Latest Data and Trend on Singaporean Citizenship and Permanent Residency")
+    st.write("2.Providing the Latest Data and Trend on Singaporean Citizenship and Permanent Residency")
 
 elif page == 'Immigration Statistics':
     st.subheader("Immigration Statistics")
@@ -82,6 +82,48 @@ elif page == 'Immigration Statistics':
         y=cols
     )
 
+    st.write("------------------------------------------------------------------------------")
+    st.write("Number And Profile Of Permanent Residents Granted")
+    dfPR = pd.read_csv("PRGranted.csv")
+    transposed_dfPR = dfPR.set_index('Data Series').transpose()
+    st.write(transposed_dfPR)
+    '## Data Series'
+    colsPR = st.multiselect('select columns:', transposed_dfPR.columns, default=[])
+
+    st.line_chart(
+        transposed_dfPR,
+        y=colsPR
+    )
+
 elif page == 'Methodology':
     st.subheader("Methodology")
     st.image("icachat_diagram.jpg", caption="Methodology Diagram")
+    st.write("Process flow representation for implementing the ChatOpenAI model gpt-4o-mini in LangChain:")
+    st.subheader("Process Flow for Implementing ChatOpenAI Model in LangChain")
+    st.subheader("1. Ingest Data")
+    st.write("      * Source: Collect data from arbitrary sources (e.g., ICA website).")
+    st.write("      * Method: Use AsyncHtmlLoader to scrape webpages and load text data into the document loader.")
+    st.subheader("2. Split into Chunks")
+    st.write("      * Action: Split the loaded text into smaller chunks.")
+    st.write("      * Tool: Initialize RecursiveCharacterTextSplitter.")
+    st.write("      * Process: Pass the documents to the splitter to create manageable text pieces.")
+    st.subheader("3. Create Embeddings")
+    st.write("    * Action: Convert the text chunks into numerical values (embeddings).")
+    st.write("    * Purpose: Represent the semantic meaning of the text for quick retrieval.")
+    st.write("    * Method: Use text-embedding-3-large model to create embeddings for each chunk.")
+    st.subheader("4. Load Embeddings into Vector Store")
+    st.write("    * Action: Store the generated embeddings in a vector store.")
+    st.write("    * Type: Use FAISS for effective similarity search.")
+    st.write("    * Benefit: Vector stores optimize the retrieval of similar documents compared to traditional databases.")
+    st.subheader("5. Query Data")
+    st.write("    * Action: Search for relevant information in the vector store using embeddings.")
+    st.write("    * Tool: Initialize ConversationalRetrievalChain.")
+    st.write("    * Functionality: Allows the chatbot to have memory and rely on the vector store for retrieving relevant information.")
+    st.write("    * Optional: Set return_source_documents=True to include source documents in responses.")
+    st.subheader("6. Generate Answer")
+    st.write("    * Action: Pass the users question along with the relevant information.")
+    st.write("    * Process: Use the question-answering chain (powered by the language model) to generate a response based on the query and the retrieved information.")
+
+    st.subheader("Summary Flow")
+    st.write("1. Ingest Data → 2. Split into Chunks → 3. Create Embeddings → 4. Load into Vector Store → 5. Query Data → 6. Generate Answer")
+    st.write("This structured flow outlines the steps needed to implement the ChatOpenAI model within the LangChain framework, ensuring clarity and systematic execution of tasks.")
