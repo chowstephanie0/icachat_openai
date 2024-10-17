@@ -66,7 +66,7 @@ elif page == 'About Us':
     st.write("https://www.ica.gov.sg/")
     st.subheader("Use cases:")
     st.write("1. Assisting Foreigners in Determining Eligibility for Staying in Singapore")
-    st.write("2.Providing the Latest Data and Trend on Singaporean Citizenship and Permanent Residency")
+    st.write("2. Providing the Latest Data and Trend on Singaporean Citizenship and Permanent Residency")
 
 elif page == 'Immigration Statistics':
     st.subheader("Immigration Statistics")
@@ -75,7 +75,7 @@ elif page == 'Immigration Statistics':
     transposed_df = df.set_index('Data Series').transpose()
     st.write(transposed_df)
     '## Data Series'
-    cols = st.multiselect('select columns:', transposed_df.columns, default=[])
+    cols = st.multiselect('select columns:', transposed_df.columns, default=[], key=1)
 
     st.line_chart(
         transposed_df,
@@ -88,7 +88,7 @@ elif page == 'Immigration Statistics':
     transposed_dfPR = dfPR.set_index('Data Series').transpose()
     st.write(transposed_dfPR)
     '## Data Series'
-    colsPR = st.multiselect('select columns:', transposed_dfPR.columns, default=[])
+    colsPR = st.multiselect('select columns:', transposed_dfPR.columns, default=[], key=2)
 
     st.line_chart(
         transposed_dfPR,
